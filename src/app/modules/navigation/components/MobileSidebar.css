@@ -1,0 +1,23 @@
+@value sidebar-zindex from 'constants/constants.css';
+
+.MobileSidebar{
+
+}
+
+.sidebar{
+  z-index: sidebar-zindex !important;
+}
+
+.content{
+  min-width: 100%;
+  height: 100%;
+}
+
+.navList{
+  list-style: none;
+  padding: 0 10px 0 10px;
+}
+
+.activeNavItem{
+
+}

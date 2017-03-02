@@ -1,0 +1,5 @@
+@import './Colors.css';
+
+.Theme{
+  composes: Typography from 'theme/Typography.css';
+}

@@ -1,0 +1,19 @@
+/*@value bg: #02141b;*/
+@value bg-gradient-1: linear-gradient(to left, #200122 , #6f0000);
+@value bg-gradient-2: linear-gradient(to left, #44A08D , #093637);
+@value bg-gradient-3: linear-gradient(to left, #F7971E , #FFD200);
+@value bg-gradient-4: linear-gradient(to left, #E0EAFC , #CFDEF3);
+
+@value bg: linear-gradient(to left, #E0EAFC , #CFDEF3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+@value primary: #1af0de;
+@value primary-contrast: #3A4696;
+
+:root{
+  /*background-color: bg;*/
+  background: bg;
+  background-size: 100% auto;
+}
+
+.text-primary{
+  color: primary;
+}

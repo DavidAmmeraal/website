@@ -1,0 +1,6 @@
+.SectionSeperator{
+  position: relative;
+  height: 70px;
+  width: 100%;
+  content: '';
+}

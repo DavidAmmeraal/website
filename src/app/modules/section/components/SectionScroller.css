@@ -1,0 +1,17 @@
+@value scrolling-zindex, nav-height from 'constants/constants.css';
+
+.ScrollingWrapper{
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.ScrollingArea{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: nav-height;
+  z-index: scrolling-zindex;
+}

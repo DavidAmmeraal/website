@@ -1,0 +1,11 @@
+@value nav-height from 'constants/constants.css';
+
+.Projects{
+  box-sizing: border-box;
+  min-height: calc(100vh - nav-height);
+}
+
+.Projects p{
+  margin: 0;
+  padding: 0;
+}

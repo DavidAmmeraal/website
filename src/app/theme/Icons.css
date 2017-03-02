@@ -1,0 +1,13 @@
+.Icon{
+  composes: fa from 'font-awesome/css/font-awesome.css';
+}
+
+.IconArrowDown{
+  composes: Icon;
+  composes: fa-arrow-down from 'font-awesome/css/font-awesome.css';
+}
+
+.IconHamburger{
+  composes: Icon;
+  composes: fa-bars from 'font-awesome/css/font-awesome.css';
+}

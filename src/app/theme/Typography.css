@@ -1,0 +1,7 @@
+@value font-family: 'Arvo', serif;
+/*@value font-family: 'PT Sans', sans-serif;*/
+
+.Typography {
+  font-family: font-family;
+  font-size: 1rem;
+}

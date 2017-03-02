@@ -1,0 +1,1 @@
+export const FOCUS_ANIMATION_LENGTH = 800;

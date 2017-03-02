@@ -1,0 +1,7 @@
+@value nav-height, section-zindex from 'constants/constants.css';
+
+.Section{
+  position: relative;
+  z-index: section-zindex;
+  box-sizing: border-box;
+}

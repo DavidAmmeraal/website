@@ -1,0 +1,29 @@
+.Cards{
+  width: 100%;
+}
+
+.CardsWrapper{
+  margin: 5% 0;
+}
+
+.card{
+  background-color: black
+}
+
+.enter{
+  transform: translateY(100%);
+  transition: transform 0.5s;
+}
+
+.enterActive{
+  transform: translateY(0%);
+}
+
+.leave{
+  opacity: 1;
+  transition: opacity 250ms;
+}
+
+.leaveActive{
+  opacity: 0
+}

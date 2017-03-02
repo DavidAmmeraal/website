@@ -1,0 +1,70 @@
+@value nav-height, nav-zindex from 'constants/constants.css';
+
+.Nav{
+  position: fixed;
+  height: nav-height;
+  width: 100%;
+  line-height: nav-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+
+.Nav::before{
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: url('../../../../assets/img/HomeHeaderGradient.png');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.NavItemsContainer{
+  @media(max-width: 48em){
+    width: 100%;
+  }
+}
+
+.NavItems{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Nav li{
+  display: inline;
+  margin-left: 10px;
+  padding: 5px;
+  color: white;
+}
+
+.Nav li.active{
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+.Nav a{
+  cursor: pointer;
+}
+
+.Nav a:hover, .active{
+  text-decoration: underline;
+}
+
+.Nav a, a:active, a:visited{
+  color: white;
+  text-decoration: none;
+}

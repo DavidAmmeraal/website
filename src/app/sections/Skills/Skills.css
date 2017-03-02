@@ -1,0 +1,11 @@
+@value nav-height from 'constants/constants.css';
+
+.Skills{
+  box-sizing: border-box;
+  min-height: calc(100vh - nav-height);
+}
+
+.Skills p{
+  margin: 0;
+  padding: 0;
+}

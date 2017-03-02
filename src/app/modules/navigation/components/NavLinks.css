@@ -1,0 +1,5 @@
+.hamburger{
+  composes: IconHamburger from 'theme/Icons.css';
+  font-size: 40px;
+  text-decoration: none !important;
+}
