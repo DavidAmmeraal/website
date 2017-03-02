@@ -11,7 +11,6 @@ export const getActiveLinkSelector = createSelector(
 export const getLinkEntitiesSelector = createSelector(
   linkEntitiesSelector,
   (linkEntities) => {
-    console.log('linkEntities = ' , linkEntities);
-    return linkEntities.ids.map(id => linkEntities.byId[id]);
+    return linkEntities.ids.map(id => ({...linkEntities.byId[id], id}));
   }
 );

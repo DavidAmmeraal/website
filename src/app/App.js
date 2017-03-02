@@ -18,9 +18,9 @@ class App extends React.Component {
     return (
       <div id="app" styleName="App">
         <rootModule.modules.navigation.components.NavigationContext>
-          <rootModule.modules.navigation.components.Nav />
-
-          <rootModule.modules.section.containers.SectionsContainer />
+          <rootModule.modules.section.containers.SectionsContainer
+            sticky={<rootModule.modules.navigation.components.Nav />}
+          />
         </rootModule.modules.navigation.components.NavigationContext>
       </div>
     )

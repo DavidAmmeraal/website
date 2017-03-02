@@ -13,5 +13,11 @@ export default handleActions({
       ...state,
       links: action.payload.result
     }
+  },
+  [actionTypes.ACTIVATE_LINK]: (state, action) => {
+    return {
+      ...state,
+      active: action.payload
+    }
   }
 }, {...initialState})

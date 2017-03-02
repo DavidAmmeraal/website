@@ -1,4 +1,4 @@
-import {put, call} from 'redux-saga/effects';
+import {put, call, select} from 'redux-saga/effects';
 
 import sectionModule from './section';
 import navigationModule from './navigation';
@@ -11,6 +11,13 @@ export function* whenPopulate(action){
 };
 
 export function* whenEnterSection(action){
-  const sectionRoute = getSectionRoute(action.payload);
+  console.log('action = ' , action);
+  const state = yield select();
+  const visibleSection = sectionModule.selectors.getCurrentlyVisibleSection(state);
+  const sectionRoute = getSectionRoute(visibleSection);
   browserHistory.push(sectionRoute);
+};
+
+export function* whenFocusSection(action){
+  yield put(navigationModule.actions.activateLink(action.payload));
 }
