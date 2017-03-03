@@ -10,6 +10,8 @@ export default function* watch(){
     call(sectionModule.watchers),
     call(navigationModule.watchers),
     takeEvery(actionTypes.POPULATE.ACTION, sagas.whenPopulate),
-    takeEvery(sectionModule.actionTypes.ENTER_SECTION.ACTION, sagas.whenEnterSection)
+    takeEvery(sectionModule.actionTypes.ENTER_SECTION.ACTION, sagas.whenEnterSection),
+    takeEvery(sectionModule.actionTypes.FOCUS_SECTION.ACTION, sagas.whenFocusSection),
+    takeEvery(navigationModule.actionTypes.ACTIVATE_LINK.ACTION, sagas.whenActivateLink)
   ]
 }

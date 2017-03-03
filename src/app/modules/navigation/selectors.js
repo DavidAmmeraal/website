@@ -2,6 +2,7 @@ import {createSelector} from 'reselect';
 
 const activeLinkSelector = state => state.navigation.active;
 const linkEntitiesSelector = state => state.entities.links;
+const logoVisibleSelector = state => state.navigation.logoVisible;
 
 export const getActiveLinkSelector = createSelector(
   activeLinkSelector,
@@ -11,7 +12,14 @@ export const getActiveLinkSelector = createSelector(
 export const getLinkEntitiesSelector = createSelector(
   linkEntitiesSelector,
   (linkEntities) => {
-    console.log('linkEntities = ' , linkEntities);
-    return linkEntities.ids.map(id => linkEntities.byId[id]);
+    return linkEntities.ids.map(id => ({...linkEntities.byId[id], id}));
   }
 );
+
+export const getLogoVisibleSelector = createSelector(
+  logoVisibleSelector,
+  (logoVisible) => {
+      console.log('get logo visible!');
+      return logoVisible;
+  }
+)

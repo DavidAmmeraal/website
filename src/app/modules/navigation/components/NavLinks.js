@@ -8,7 +8,6 @@ import * as selectors from '../selectors';
 
 class NavLinks extends React.Component {
   render () {
-
     const children = this.props.collapsed ? [
       (<li key={0}>
         <a href="#" styleName="hamburger" onClick={this.props.onToggleCollapse}></a>
@@ -16,7 +15,10 @@ class NavLinks extends React.Component {
     ] : this.props.links.map((linkEntity, index) => {
       return (
         <li className={linkEntity.id === this.props.active ? this.props.activeClass : null} key={index}>
-          <Link to={linkEntity.route}>{linkEntity.readable}</Link>
+          <Link to={{
+              pathname:linkEntity.route,
+              state: {focus: true}
+          }} >{linkEntity.readable}</Link>
         </li>
       )
     });

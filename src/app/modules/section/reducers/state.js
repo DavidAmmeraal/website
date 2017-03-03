@@ -1,8 +1,11 @@
 import { handleActions } from 'redux-actions';
 import * as actionTypes from '../actionTypes';
+import union from 'lodash/union';
+import without from 'lodash/without';
 
 const initialState = {
   sections: [],
+  visible: [],
   focus: null,
   moving: false
 };
@@ -31,5 +34,17 @@ export default handleActions({
       ...state,
       moving: false
     };
+  },
+  [actionTypes.ENCOUNTER_SECTION.ACTION]: (state, action) => {
+    return {
+      ...state,
+      visible: union(state.visible, [action.payload])
+    }
+  },
+  [actionTypes.PASS_SECTION.ACTION]: (state, action) => {
+    return {
+      ...state,
+      visible: without(state.visible, action.payload)
+    }
   }
 }, {...initialState})

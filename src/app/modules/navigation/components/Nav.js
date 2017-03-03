@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import NavLinks from './NavLinks';
+import Logo from 'components/Logo';
+import { connect } from 'react-redux';
+import * as selectors from '../selectors';
 
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 
@@ -8,20 +11,24 @@ import styles from './Nav.css';
 
 class Nav extends React.Component {
   render () {
+    console.log('this props = ' , this.props);
     return (
       <div styleName='Nav'>
-        <Grid styleName='NavItemsContainer'>
-          <Row styleName='NavItems'>
-            <NavLinks
-              activeClass={styles.active}
-              collapsed={this.props.collapsed}
-              onToggleCollapse={this.props.onToggleCollapse}
-            />
-          </Row>
-        </Grid>
+        <div styleName='logo'>
+          <Logo open={this.props.logoVisible} />
+        </div>
+        <NavLinks
+          activeClass={styles.active}
+          collapsed={this.props.collapsed}
+          onToggleCollapse={this.props.onToggleCollapse}
+        />
       </div>
     )
   }
 }
 
-export default CSSModules(Nav, styles);
+const mapStateToProps = (state, props) => ({
+  logoVisible: selectors.getLogoVisibleSelector(state)
+});
+
+export default connect(mapStateToProps)(CSSModules(Nav, styles));

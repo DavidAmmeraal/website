@@ -1,8 +1,0 @@
-.Layout{
-  composes: Theme from '../theme/Theme.css';
-}
-
-.VerticalStretchLayout{
-  composes: Layout;
-  composes: stretch-height from '../util/util.css';
-}

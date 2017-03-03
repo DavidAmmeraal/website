@@ -12,8 +12,14 @@ class AppRouter extends React.Component {
     const sections = getAllSections();
 
     const sectionRoutes = Object.keys(sections).map(sectionId => {
-      console.log(sections[sectionId].route);
-      return <Route key={sectionId} path={sections[sectionId].route} onEnter={() => this.props.focusSection(sectionId)} />
+      return <Route key={sectionId} path={sections[sectionId].route} onEnter={
+          (e) => {
+            const activeSection = Object.keys(sections).find(section => sections[section].route === sections[sectionId].route);
+            this.props.activateLink(activeSection);
+            if(e.location.state && e.location.state.focus)
+              return this.props.focusSection(sectionId)
+          }
+        }/>
     })
 
     return (
@@ -27,6 +33,9 @@ class AppRouter extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
+  activateLink: (route) => {
+    dispatch(rootModule.modules.navigation.actions.activateLink(route))
+  },
   focusSection: (section) => {
     dispatch(rootModule.modules.section.actions.focusSection(section));
   }

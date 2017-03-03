@@ -10,7 +10,7 @@ import * as actions from '../actions';
 class SectionsContainer extends React.Component {
 
   render () {
-    console.log('actions = ' , actions);
+
     const children = this.props.sections.map((section, index) => {
 
       const SectionContent = getSectionElement(section);
@@ -33,9 +33,11 @@ class SectionsContainer extends React.Component {
       );
     });
 
+    const scrollTop = this.props.focusPosition ? this.props.focusPosition.top : null;
     return (
       <SectionScroller
-        scrollPosition={this.props.focusPosition}
+        sticky={this.props.sticky}
+        scrollTop={scrollTop}
       >
         {children}
       </SectionScroller>

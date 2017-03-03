@@ -10,8 +10,6 @@ import {
 } from './selectors';
 
 export const whenEncounterSection = function* (action){
-  console.info('encounter section ' , action.payload);
-
   const state = yield select();
   const moving = getMovingSelector(state);
 

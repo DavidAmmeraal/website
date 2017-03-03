@@ -11,6 +11,8 @@ class Section extends React.Component {
 
   constructor(){
     super();
+
+    this.windowResized = this.windowResized.bind(this);
     this.state = {
       dimensions: {
         top: 0,
@@ -21,34 +23,41 @@ class Section extends React.Component {
     }
   }
 
-  onMeasure(dimensions){
-    const oldState = {...this.state};
-
-    if(dimensions.height !== oldState.dimensions.height || dimensions.width !== oldState.dimensions.width){
-      this.setState({
-        ...this.state,
-        dimensions: dimensions
-      });
+  windowResized(){
+    const rect = this.refs.section.getBoundingClientRect();
+    const dimensions = {
+      top: this.refs.section.offsetTop,
+      left: this.refs.section.offsetLeft,
+      width: rect.width,
+      height: rect.height
     }
     this.props.sectionSizeChanged(dimensions);
+  }
+
+  componentDidMount(){
+    window.addEventListener('resize', this.windowResized);
+    this.windowResized();
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('resize', this.windowResized);
   }
 
   render () {
     const self = this;
     return (
-      <Measure
-        ref='scroll'
-        onMeasure={this.onMeasure.bind(this)}
-      >
-        <Waypoint
-          onEnter={this.props.onEnter}
-          onLeave={this.props.onLeave}
-        >
-          <div className={styles.Section}>
-            {this.props.children}
-          </div>
-        </Waypoint>
-      </Measure>
+        <div ref="section">
+          <Waypoint
+            onEnter={this.props.onEnter}
+            onLeave={this.props.onLeave}
+            topOffset='20%'
+            bottomOffset='20%'
+          >
+            <div className={styles.Section}>
+              {this.props.children}
+            </div>
+          </Waypoint>
+        </div>
     )
   }
 }

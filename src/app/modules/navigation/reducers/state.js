@@ -4,7 +4,8 @@ import * as actionTypes from '../actionTypes';
 const initialState = {
   collapsed: false,
   active: null,
-  links: []
+  links: [],
+  logoVisible: false
 };
 
 export default handleActions({
@@ -12,6 +13,18 @@ export default handleActions({
     return {
       ...state,
       links: action.payload.result
+    }
+  },
+  [actionTypes.ACTIVATE_LINK]: (state, action) => {
+    return {
+      ...state,
+      active: action.payload
+    }
+  },
+  [actionTypes.TOGGLE_LOGO]: (state, action) => {
+    return {
+      ...state,
+      logoVisible: action.payload
     }
   }
 }, {...initialState})

@@ -1,5 +1,5 @@
 @value nav-height: 62px;
-@value nav-zindex: -1;
-@value scrolling-zindex: 499;
-@value section-zindex: -2;
+@value nav-zindex: 499;
+@value scrolling-zindex: 498;
+@value section-zindex: 497;
 @value sidebar-zindex: 500;

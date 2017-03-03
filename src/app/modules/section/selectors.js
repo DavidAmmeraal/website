@@ -6,6 +6,7 @@ const sectionSizesEntitiesSelector = (state) => state.entities.sectionSizes;
 const focusSectionSelector = (state) => state.section.focus;
 const positionSelector = (state) => state.section.position;
 const movingSelector = (state) => state.section.moving;
+const visibleSectionsSelector = (state) => state.section.visible;
 
 export const getAllSectionsSelector = createSelector(
   sectionIdsSelector,
@@ -42,6 +43,17 @@ export const getScrollingSectionSelector = createSelector(
     });
   }
 );
+
+export const getCurrentlyVisibleSection = createSelector(
+  sectionIdsSelector,
+  visibleSectionsSelector,
+  (ids, visible) => {
+    return visible.reduce((result, next) => {
+      return result === null || ids.indexOf(next) < ids.indexOf(result) ? next : result
+    }, null);
+
+  }
+)
 
 export const getMovingSelector = createSelector(
   movingSelector,

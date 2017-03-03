@@ -12,48 +12,64 @@ import { connect } from 'react-redux';
 
 import { FOCUS_ANIMATION_LENGTH } from 'constants/constants';
 
-let contentTop = 0;
 
 class SectionScroller extends React.Component {
 
-  componentDidMount(){
-    const scrollingContent = this.refs.scrollingContent;
-    const boundingRect = scrollingContent.getBoundingClientRect();
-
-    contentTop = boundingRect.top;
-  }
-
-  componentDidUpdate(){
-
-    const scrollingArea = this.refs.scrollingArea;
-    const scrollTop = this.props.scrollPosition.top - contentTop;
-    const self = this;
-
-    this.props.startMoving();
-    Velocity(this.refs.scrollingArea, {
-      tween: [scrollTop, scrollingArea.scrollTop]
-    }, {
-      duration: 200,
-      progress: function(elements, complete, remaining, start, tweenValue){
-        scrollingArea.scrollTop = tweenValue;
-      },
-      complete: function(){
-        self.props.endMoving();
+  constructor(){
+    super();
+    this.state = {
+      stickyDimensions: {
+        height: 0,
+        width: 0
       }
-    })
+    }
   }
 
+  componentDidUpdate(prevProps){
+    const self = this;
+    if((!prevProps.scrollTop && this.props.scrollTop) || (prevProps.scrollTop !== this.props.scrollTop)){
+      this.props.startMoving();
+      const scrollTop = this.props.scrollTop;
+
+      const currentScrollTop = document.body.scrollTop;
+
+      Velocity(document.body, {
+        tween: [scrollTop, currentScrollTop]
+      }, {
+        duration: 200,
+        progress: function(elements, complete, remaining, start, tweenValue){
+          document.body.scrollTop = tweenValue;
+        //
+        },
+        complete: function(){
+          self.props.endMoving();
+        }
+      })
+    }
+
+  }
+
+  onMeasureSticky(dimensions){
+    this.setState({
+      stickyDimensions: dimensions
+    });
+  }
 
   render () {
     const self = this;
 
     return (
-        <div styleName='ScrollingWrapper'>
-            <div styleName='ScrollingArea' ref='scrollingArea'>
-              <div ref='scrollingArea' ref='scrollingContent'>
-                {this.props.children}
-              </div>
+        <div styleName='SectionScroller'>
+          <Measure
+            onMeasure={this.onMeasureSticky.bind(this)}
+          >
+            <div ref='sticky' styleName='sticky'>
+              {this.props.sticky}
             </div>
+          </Measure>
+          <div ref='content' styleName='content'>
+            {this.props.children}
+          </div>
         </div>
     )
   }
