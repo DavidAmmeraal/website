@@ -15,17 +15,15 @@ class App extends React.Component {
   }
 
   render(){
-    return (
+    return(
       <div id="app" styleName="App">
-        <rootModule.modules.navigation.components.NavigationContext>
           <rootModule.modules.section.containers.SectionsContainer
             sticky={<rootModule.modules.navigation.components.Nav />}
-          />
-        </rootModule.modules.navigation.components.NavigationContext>
+            />
       </div>
     )
-
   }
+
 }
 
 export default CSSModules(App, styles);

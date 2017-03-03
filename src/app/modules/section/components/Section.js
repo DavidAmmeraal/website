@@ -50,6 +50,8 @@ class Section extends React.Component {
           <Waypoint
             onEnter={this.props.onEnter}
             onLeave={this.props.onLeave}
+            topOffset='20%'
+            bottomOffset='20%'
           >
             <div className={styles.Section}>
               {this.props.children}

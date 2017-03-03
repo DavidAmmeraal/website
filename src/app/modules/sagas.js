@@ -11,12 +11,16 @@ export function* whenPopulate(action){
 };
 
 export function* whenEnterSection(action){
-  console.log('action = ' , action);
-  const state = yield select();
-  const visibleSection = sectionModule.selectors.getCurrentlyVisibleSection(state);
-  const sectionRoute = getSectionRoute(visibleSection);
+  //Add the section route to the browser address
+
+  const sectionRoute = getSectionRoute(action.payload);
   browserHistory.push(sectionRoute);
+
 };
+
+export function* whenActivateLink(action){
+  yield put(navigationModule.actions.toggleLogo(action.payload !== 'home'));
+}
 
 export function* whenFocusSection(action){
   yield put(navigationModule.actions.activateLink(action.payload));

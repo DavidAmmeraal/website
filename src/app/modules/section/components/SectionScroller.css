@@ -1,24 +1,13 @@
 @value scrolling-zindex, nav-height from 'constants/constants.css';
 
-.ScrollingWrapper{
-  width: 100%;
-  height: 100%;
-  overflow-y: hidden;
-}
+.SectionScroller{
 
-.ScrollingArea{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
-  z-index: scrolling-zindex;
 }
 
 .sticky{
-  position: absolute;
+  position: fixed;
+  position: sticky;
+  margin-right: 15px;
   top: 0;
   left: 0;
   width: 100%;

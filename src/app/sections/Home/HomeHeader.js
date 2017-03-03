@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules';
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 
 import HomeHeaderTitle from './HomeHeaderTitle';
-import HomeHeaderLogo from './HomeHeaderLogo';
+import Logo from 'components/Logo';
 import HomeHeaderText from './HomeHeaderText';
 import styles from './HomeHeader.css';
 
@@ -13,10 +13,12 @@ class HomeHeader extends React.Component {
 
     return (
       <div styleName='HomeHeader'>
-        <Grid styleName='HomeHeaderLayout'>
+        <Grid styleName='layout'>
           <Row styleName='contents'>
-            <Col xs={12} styleName='LogoWrapper'>
-              <HomeHeaderLogo open={true}/>
+            <Col xs={12} styleName='logoContainer'>
+              <div styleName='logo'>
+                <Logo open={true} />
+              </div>
             </Col>
             <Col xs={12}>
               <HomeHeaderText />

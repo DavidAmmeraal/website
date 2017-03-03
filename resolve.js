@@ -7,6 +7,7 @@ module.exports = {
   root: rootPath,
   alias: {
     assets: 'assets',
+    components: 'app/components',
     sections: 'app/sections',
     theme: 'app/theme',
     constants: 'app/constants',

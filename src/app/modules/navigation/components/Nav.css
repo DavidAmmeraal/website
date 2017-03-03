@@ -1,19 +1,21 @@
 @value nav-height, nav-zindex from 'constants/constants.css';
 
 .Nav{
+  display: flex;
   position: relative;
   height: nav-height;
   width: 100%;
   line-height: nav-height;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+  box-sizing: border-box;
 }
 
 .Nav::before{
   width: 100%;
   height: 100%;
-  background: url('../../../../assets/img/HomeHeaderGradient.png');
+  background: url('assets/img/HomeHeaderGradient.png');
   background-size: 100% auto;
   background-repeat: repeat-y;
   content: '';
@@ -37,7 +39,6 @@
 
 .Nav ul{
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 
@@ -64,4 +65,9 @@
 .Nav a, a:active, a:visited{
   color: white;
   text-decoration: none;
+}
+
+.logo{
+  position: relative;
+  width: 50px;
 }

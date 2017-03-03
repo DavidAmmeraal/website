@@ -25,29 +25,21 @@ class SectionScroller extends React.Component {
     }
   }
 
-  componentDidMount(){
-    const self = this;
-    this.refs.scrollingArea.addEventListener("scroll", function(){
-      self.refs.sticky.style.top = self.refs.scrollingArea.scrollTop + 'px';
-    })
-  }
-
   componentDidUpdate(prevProps){
     const self = this;
     if((!prevProps.scrollTop && this.props.scrollTop) || (prevProps.scrollTop !== this.props.scrollTop)){
       this.props.startMoving();
-
-      const scrollingArea = this.refs.scrollingArea;
-      const areaRect = scrollingArea.getBoundingClientRect();
       const scrollTop = this.props.scrollTop;
 
-      Velocity(this.refs.scrollingArea, {
-        tween: [scrollTop, scrollingArea.scrollTop]
+      const currentScrollTop = document.body.scrollTop;
+
+      Velocity(document.body, {
+        tween: [scrollTop, currentScrollTop]
       }, {
         duration: 200,
         progress: function(elements, complete, remaining, start, tweenValue){
-          scrollingArea.scrollTop = tweenValue;
-          self.refs.sticky.style.top = self.refs.scrollingArea.scrollTop + 'px';
+          document.body.scrollTop = tweenValue;
+        //
         },
         complete: function(){
           self.props.endMoving();
@@ -67,19 +59,17 @@ class SectionScroller extends React.Component {
     const self = this;
 
     return (
-        <div styleName='ScrollingWrapper'>
-            <div styleName='ScrollingArea' ref='scrollingArea'>
-              <Measure
-                onMeasure={this.onMeasureSticky.bind(this)}
-              >
-                <div ref='sticky' styleName='sticky'>
-                  {this.props.sticky}
-                </div>
-              </Measure>
-              <div ref='scrollingContent' styleName='content' style={{marginTop: this.state.stickyDimensions.height}}>
-                {this.props.children}
-              </div>
+        <div styleName='SectionScroller'>
+          <Measure
+            onMeasure={this.onMeasureSticky.bind(this)}
+          >
+            <div ref='sticky' styleName='sticky'>
+              {this.props.sticky}
             </div>
+          </Measure>
+          <div ref='content' styleName='content'>
+            {this.props.children}
+          </div>
         </div>
     )
   }
