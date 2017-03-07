@@ -11,7 +11,6 @@ import styles from './Nav.css';
 
 class Nav extends React.Component {
   render () {
-    console.log('this props = ' , this.props);
     return (
       <div styleName='Nav'>
         <div styleName='logo'>

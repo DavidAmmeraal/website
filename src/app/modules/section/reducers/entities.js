@@ -24,13 +24,11 @@ export default {
       }
     },
     [actionTypes.SECTION_SIZE_CHANGED]: (state, action) => {
-      console.log('action = ' , action);
       const newState = {...state};
       if(newState.sectionSizes.ids.indexOf(action.payload.id) === -1){
         newState.sectionSizes.ids = newState.sectionSizes.ids.concat(action.payload.id);
       }
 
-      console.log('setting new dimensions = ' , action.payload.dimensions);
       const currentDimensions = newState.sectionSizes.byId[action.payload.id]
       newState.sectionSizes.byId[action.payload.id] = action.payload.dimensions;
 

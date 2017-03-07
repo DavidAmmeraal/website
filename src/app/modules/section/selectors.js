@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import difference from 'lodash/difference';
 
 const sectionIdsSelector = (state) => state.section.sections;
 const sectionEntitiesSelector = (state) => state.entities.sections;
@@ -7,6 +8,7 @@ const focusSectionSelector = (state) => state.section.focus;
 const positionSelector = (state) => state.section.position;
 const movingSelector = (state) => state.section.moving;
 const visibleSectionsSelector = (state) => state.section.visible;
+const readySectionsSelector = (state) => state.section.ready;
 
 export const getAllSectionsSelector = createSelector(
   sectionIdsSelector,
@@ -44,18 +46,20 @@ export const getScrollingSectionSelector = createSelector(
   }
 );
 
-export const getCurrentlyVisibleSection = createSelector(
-  sectionIdsSelector,
+export const getCurrentlyVisibleSectionsSelector = createSelector(
   visibleSectionsSelector,
-  (ids, visible) => {
-    return visible.reduce((result, next) => {
-      return result === null || ids.indexOf(next) < ids.indexOf(result) ? next : result
-    }, null);
-
-  }
-)
+  (visible) => visible
+);
 
 export const getMovingSelector = createSelector(
   movingSelector,
   (moving) => moving
 );
+
+export const getSectionsReadySelector = createSelector(
+  readySectionsSelector,
+  getAllSectionsSelector,
+  (ready, allSections) => {
+    return !difference(allSections, ready).length;
+  }
+)
