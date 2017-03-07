@@ -12,7 +12,6 @@ export function* whenPopulate(action){
 
 export function* whenEnterSection(action){
   //Add the section route to the browser address
-
   const sectionRoute = getSectionRoute(action.payload);
   browserHistory.push(sectionRoute);
 

@@ -6,6 +6,7 @@ import without from 'lodash/without';
 const initialState = {
   sections: [],
   visible: [],
+  ready: [],
   focus: null,
   moving: false
 };
@@ -45,6 +46,13 @@ export default handleActions({
     return {
       ...state,
       visible: without(state.visible, action.payload)
+    }
+  },
+  [actionTypes.SECTION_READY]: (state, action) => {
+    console.log('payload = ', action.payload);
+    return {
+      ...state,
+      ready: union(state.ready, [action.payload])
     }
   }
 }, {...initialState})

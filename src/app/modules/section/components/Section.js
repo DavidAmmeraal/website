@@ -3,9 +3,9 @@ import Measure from 'react-measure';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import CSSModules from 'react-css-modules';
-import { sectionSizeChanged } from '../actions';
 var Waypoint = require('react-waypoint');
 import styles from './Section.css';
+import * as actions from '../actions';
 
 class Section extends React.Component {
 
@@ -37,6 +37,8 @@ class Section extends React.Component {
   componentDidMount(){
     window.addEventListener('resize', this.windowResized);
     this.windowResized();
+
+    this.props.sectionReady();
   }
 
   componentWillUnmount(){
@@ -69,7 +71,10 @@ const mapDispatchToProps = (dispatch, props) => ({
       dimensions: dimensions
     }
 
-    dispatch(sectionSizeChanged(payload));
+    dispatch(actions.sectionSizeChanged(payload));
+  },
+  sectionReady: () => {
+    dispatch(actions.sectionReady(props.id));
   }
 });
 
